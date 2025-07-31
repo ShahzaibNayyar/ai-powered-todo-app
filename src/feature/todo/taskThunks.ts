@@ -140,13 +140,15 @@ Otherwise,  Return only the translate JSON array without code formatting:
 
 ${JSON.stringify(tasksString)}`,
     });
+
+    thunkAPI.dispatch(hideLoading());
     if (text === "INVALID_LANGUAGE") {
       toast("Invalid language.", {
         description: `"${targetLanguage}" is an invalid language`,
       });
+      return thunkAPI.rejectWithValue("INVALID_LANGUAGE");
     }
     const translatedTasks = JSON.parse(text);
-    thunkAPI.dispatch(hideLoading());
     return { taskId: task.id, translatedTasks };
   }
 );
