@@ -15,12 +15,19 @@ const AddTask = () => {
     setTaskName("");
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleAddTask();
+    }
+  };
+
   return (
     <div className="flex flex-row p-3 space-x-2 bg-gray-100 rounded-2xl w-full max-w-xl h-32 justify-center items-center">
       <Input
         className="w-3xl border-black h-10"
         value={taskName}
         onChange={(e) => setTaskName(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
 
       <Button
