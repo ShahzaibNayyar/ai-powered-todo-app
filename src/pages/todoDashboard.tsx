@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import TaskCard from "../feature/todo/taskCard";
 import AddTask from "@/feature/todo/addTask";
