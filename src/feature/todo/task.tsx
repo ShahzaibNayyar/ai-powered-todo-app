@@ -2,7 +2,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import type { Task } from "@/models/task.type";
 import { useAppDispatch } from "@/redux/hooks";
 import { Label } from "@radix-ui/react-label";
-import React from "react";
 import { toggleSubTaskTaskCompletion, toggleTaskCompletion } from "./taskThunks";
 
 const TaskRow = (
