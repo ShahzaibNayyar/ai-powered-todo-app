@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { IconTablePlus } from "@tabler/icons-react";
 import { addTask } from "./taskThunks";
+import { toast } from "sonner";
 
 const AddTask = () => {
   const [taskName, setTaskName] = useState<string>("");
@@ -11,8 +12,19 @@ const AddTask = () => {
   const dispatch = useAppDispatch();
 
   const handleAddTask = async () => {
-    dispatch(addTask(taskName));
+    const trimmedTask = taskName.trim();
+    if (!trimmedTask) {
+      setTaskName("");
+      toast.error("Task name cannot be empty.", {
+        description: "Please enter a valid task name.",
+        descriptionClassName: 'text-black'
+      });
+      return;
+    }
+
+    await dispatch(addTask(trimmedTask));
     setTaskName("");
+    toast.success("Task added successfully!");
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

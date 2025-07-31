@@ -6,7 +6,17 @@ function App() {
   return (
     <>
       <TodoDashboard />
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          classNames: {
+            toast: "!bg-black !text-white !border !border-white",
+            title: "!text-white",
+            description: "!text-white !opacity-100",
+            icon: "!text-white",
+          },
+        }}
+      />
+
       <LoadingOverlay />
     </>
   );
