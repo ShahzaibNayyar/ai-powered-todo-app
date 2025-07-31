@@ -30,7 +30,23 @@ export const taskSlice = createSlice({
         (task) => task.id == action.payload?.id
       );
       if (taskIndex !== -1 && action.payload) {
-        state.tasks[taskIndex] = action.payload;
+        state.tasks[taskIndex] = {
+          ...action.payload,
+          name: state.tasks[taskIndex].name,
+          subTasks: state.tasks[taskIndex].subTasks?.map(
+            (subTask, subTaskIndex) => {
+              const updatedSubTask = payload.subTasks
+                ? payload.subTasks[subTaskIndex]
+                : undefined;
+              return {
+                ...subTask,
+                ...(updatedSubTask ? updatedSubTask : {}),
+                name: subTask.name,
+                dateCreated: subTask.dateCreated,
+              };
+            }
+          ),
+        };
       }
     },
   },
